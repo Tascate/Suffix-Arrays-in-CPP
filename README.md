@@ -37,9 +37,7 @@ sa.makeSuffixArray();
 sa.printSuffixArray();
 ```
 This will output the computed Suffix Array using the Skew Algorithm:
-```bash
-Suffix Array : 7 1 4 3 2 0 6 5
-```
+> Suffix Array : 7 1 4 3 2 0 6 5
 
 
 ## Things to note
