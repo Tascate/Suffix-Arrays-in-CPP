@@ -1,6 +1,6 @@
 #include "Skew.h"
 #include "SAIS.h"
-#include "NaiveSA.h"
+#include "Naive.h"
 
 int main()
 {
@@ -21,7 +21,7 @@ int main()
     s2.printSuffixArray();
     std::cout << std::endl;
 
-    NaiveSA s3;
+    Naive s3;
     std::cout << typeid(s3).name() << std::endl;
     s3.addString(testString);
     s3.makeSuffixArray();

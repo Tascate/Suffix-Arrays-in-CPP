@@ -1,6 +1,6 @@
-#include "NaiveSA.h"
+#include "Naive.h"
 
-bool NaiveSA::addStringFromFile(std::string fileName)
+bool Naive::addStringFromFile(std::string fileName)
 {
     if (numStrings + 1 > 1)
         return false;
@@ -8,7 +8,7 @@ bool NaiveSA::addStringFromFile(std::string fileName)
 	return true;
 }
 
-bool NaiveSA::addString(std::string inputString)
+bool Naive::addString(std::string inputString)
 {
     if (numStrings + 1 > 1)
         return false;
@@ -16,7 +16,7 @@ bool NaiveSA::addString(std::string inputString)
 	return true;
 }
 
-void NaiveSA::makeSuffixArray()
+void Naive::makeSuffixArray()
 {
     std::stringstream ss;
     for(auto it = string->begin(); it != string->end(); ++it )

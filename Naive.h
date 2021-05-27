@@ -3,10 +3,10 @@
 #include <iterator>
 #include <algorithm>
 
-class NaiveSA : public SuffixArray
+class Naive : public SuffixArray
 {
 public:
-    NaiveSA() {};
+    Naive() {};
     void makeSuffixArray();
     bool addStringFromFile(std::string);
 	bool addString(std::string);
