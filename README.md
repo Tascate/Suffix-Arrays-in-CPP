@@ -63,7 +63,7 @@ Finding the LCS is based upon the premise that for a __sliding window__ from **i
 We can then use bookkeeping to find the longest common substring.
 
 #### Finding out which string a suffix belongs to:
-For simplicity, finding out the parent string for a given suffix takes **O(logm)** time (where **m = # of strings**) and **O(1)** space using binary search. This is possible to optimize for **O(1)** time by tracking the parent string for a suffix in memory. (For example, a map or array)
+For coding simplicity, finding out the parent string for a given suffix takes **O(logm)** time (where **m = # of strings**) and **O(1)** space using binary search. However, it is possible to optimize for **O(1)** time by tracking the parent string for a suffix in memory. (For example, a map or array)
 
 
 ## Good Resources I used to Learn about Suffix Arrays
