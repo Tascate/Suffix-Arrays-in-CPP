@@ -195,6 +195,7 @@ int SuffixArray::findLongestCommonStrand(const unsigned int k)
 		//Update our max value if needed
 		updateMaxValue(suffix1, suffix2);
 	}
+	printSubVector(*string, *offsets.begin(), max);
     
 	return max;
 }

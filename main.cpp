@@ -10,8 +10,10 @@ int main()
     Skew s;
     std::cout << typeid(s).name() << std::endl;
     s.addString(testString);
+    s.addString("baggage");
     s.makeSuffixArray();
     s.printSuffixArray();
+    s.findLongestCommonStrand(2);
     std::cout << std::endl;
 
     SAIS s2;
