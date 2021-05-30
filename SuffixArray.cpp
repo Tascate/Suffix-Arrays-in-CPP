@@ -249,7 +249,7 @@ void SuffixArray::printVector(std::vector<T> v)
 }
 
 template <typename T>
-void printSubVector(std::vector<T> v, int offset, int length) 
+void SuffixArray::printSubVector(std::vector<T> v, int offset, int length) 
 {
 	if (offset + length <= v.size()) {
 		for (auto i = offset; i < offset + length; i++)
