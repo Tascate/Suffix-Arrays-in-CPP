@@ -76,9 +76,9 @@ For coding simplicity, finding out the parent string for a given suffix takes **
 - [**markormesher's Skew Algorithm explanation**](https://gist.github.com/markormesher/59b990fba09972b4737e7ed66912e044)
 - [**Skew Algorithim Description**](http://www.mi.fu-berlin.de/wiki/pub/ABI/SS13Lecture3Materials/script.pdf)
 - [**Skew Algorithim Slide Visuals**](https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/suffixarrays.pdf)
+- [**Sliding Window Minimum Algorithm**](https://people.cs.uct.ac.za/~ksmith/articles/sliding_window_minimum.html) 
 #### Videos:
 - [**Longest Common Prefix (LCP Array)**](https://www.youtube.com/watch?v=53VIWj8ksyI&t=0s)
 - [**Longest common substring problem suffix array part 1**](https://www.youtube.com/watch?v=Ic80xQFWevc)
 - [**Longest Common Substring problem suffix array part 2**](https://www.youtube.com/watch?v=DTLjHSToxmo)
 - [**Longest Repeated Substring**](https://www.youtube.com/watch?v=OptoHwC3D-Y)
-- [**Sliding Window Minimum Algorithm**](https://people.cs.uct.ac.za/~ksmith/articles/sliding_window_minimum.html)  
