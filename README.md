@@ -49,7 +49,7 @@ The algorithm is fairly simple to implement, requiring less code overall than th
 
 ### SA-IS Algorithm
 **O(n) time, O(n) work**   
-This is an implementation of the SA-IS algorithm for my own understanding as well as improving my C++. The code is largely based on Screwtape's [A walk through the SA-IS Suffix Array Construction Algorithm](https://zork.net/~st/jottings/sais.html) and **may not necessarily be optimized** and. Screwtape's walkthrough is a great resource for learning the SA-IS algorithm!
+This is an implementation of the SA-IS algorithm for my own understanding as well as improving my C++. The code is largely based on Screwtape's [A walk through the SA-IS Suffix Array Construction Algorithm](https://zork.net/~st/jottings/sais.html) and **may not necessarily be optimized**. Screwtape's walkthrough is a great resource for learning the SA-IS algorithm!
 
 ### Kasai Algorithm
 **O(n) time, O(1) work**   
@@ -57,7 +57,7 @@ A simple algorithm to construct the LCP Array from a Suffix Array in linear time
 
 ### Longest Common String for k-Strings
 **O(n) time, O(n) work)**   
-Finding the LCS is based upon the premise that for a __sliding window__ from **i** to **j** on the LCP array. The **LCP value** for that sliding window is the minimum value from **i+1** to **j** provided that the first character for the suffix **i** and suffix **j** are the same. We only have to update our maximum value if the sliding window contains unique **k-strings**.   
+Finding the LCS is based upon the premise that for a __sliding window__ from **i** to **j** on the LCP array. The **LCP value** for that sliding window is the minimum value from **i+1** to **j** provided that the first character for the suffix **i** and suffix **j** are the same. Also, we only have to update the current maximum value if the sliding window contains unique **k-strings**.   
 We can then use bookkeeping to find the longest common substring.
 
 #### Finding out which string a suffix belongs to:
