@@ -10,10 +10,8 @@ int main()
     Skew s;
     std::cout << typeid(s).name() << std::endl;
     s.addString(testString);
-    s.addString("baggage");
     s.makeSuffixArray();
     s.printSuffixArray();
-    s.findLongestCommonStrand(2);
     std::cout << std::endl;
 
     SAIS s2;
@@ -28,4 +26,14 @@ int main()
     s3.addString(testString);
     s3.makeSuffixArray();
     s3.printSuffixArray();
+    std::cout << std::endl;
+
+    Skew testLCS;
+    std::cout << "LCS for: " << testString << " " << "baggage" << std::endl;
+    std::cout << typeid(s3).name() << std::endl;
+    testLCS.addString(testString);
+    testLCS.addString("baggage");
+    testLCS.makeSuffixArray();
+    testLCS.printSuffixArray();
+    testLCS.findLongestCommonStrand(2);
 }
