@@ -31,7 +31,7 @@ int main()
 
     Skew testLCS;
     std::cout << "LCS for: " << testString1 << " " << testString2 << std::endl;
-    std::cout << typeid(s3).name() << std::endl;
+    std::cout << typeid(testLCS).name() << std::endl;
     testLCS.addString(testString1);
     testLCS.addString(testString2);
     testLCS.makeSuffixArray();
