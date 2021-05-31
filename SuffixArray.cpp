@@ -101,51 +101,52 @@ int SuffixArray::findLongestCommonStrand(const unsigned int k)
 		std::cout << "Given invalid k-value: " << k << std::endl;
 	}
 
-    //Set-up LCP Array and Offsets
-    std::set<int> offsets;
+    //initialize LCP Array and Offsets
 	std::vector<int> lcp = makeLCPArray();
 	unsigned int length = lcp.size();
+    std::set<int> offsets;
+	
     
-    //Skip indexes set aside for sentinel characters
+    // Can skip suffix indexes that are sentinel characters
 	unsigned int window1 = numStrings; //sliding window, first index
 	unsigned int window2 = numStrings; //sliding window, second index
 	std::map<int, int> suffixSourcesMap; //Tracks # of suffixes for each string in the sliding window
-	
-    //Accurately track how many strings are in the sliding window
-    //Delete its index if # of suffixes becomes 0
+	suffixSourcesMap[calcParentString((*suffixArray)[window1])] += 1; //first value
+
+	int max = 0;
+	std::deque<int> window; //Tracks the minimum value for the sliding window
+
+    //Must accurately track how many strings are in the sliding window
+    //Lambda expression to Decrement given index
+	//And delete given index if # of suffixes for the string becomes 0
     auto decrementIndex = [](std::map<int, int> &map, int index) {
 		if (map[index] - 1 <= 0)
 			map.erase(index);
 		else
 			map[index] -= 1;
 	};
-	suffixSourcesMap[calcParentString((*suffixArray)[window1])] += 1;
 
-	int max = 0;
-	int currentMinIndex = 1; //index for LCP minimum value of sliding window from index1+1 to index2
-	
     //This code is used twice, so let's make this a lambda expression
     auto updateMaxValue = [&](int index1, int index2) {
 		//Only need to check if the first byte of the suffix is equal
 		if ((*string)[index1] == (*string)[index2])
 		{
 			//Update offsets and max
-			if (lcp[currentMinIndex] > max)
+			if (lcp[window.front()] > max)
 			{
-				max = lcp[currentMinIndex];
+				max = lcp[window.front()];
 				offsets.clear();
 				offsets.insert(index1);
-				offsets.insert(index2);
 			}
 			//Edge-case if the LCS actually has two or more answers
-			else if (lcp[currentMinIndex] == max)
+			else if (lcp[window.front()] == max)
 			{
-				offsets.insert(index1);
 				offsets.insert(index2);
 			}
 		}
 	};
 
+	//Begin looping through lcp array
     while (window1 < length && window2 < length)
 	{
 		int suffix1 = (*suffixArray)[window1];
@@ -157,29 +158,22 @@ int SuffixArray::findLongestCommonStrand(const unsigned int k)
 
 			//Reduce sliding window
 			decrementIndex(suffixSourcesMap, calcParentString(suffix1));
-			/*
-				Update currentMinIndex to new sliding window
-				currentMinIndex may be set outside sliding window
-					this will only happen when window1 == window2
-				sliding window will catch up
-			*/
 			window1 += 1;
+
+			//Remove min value if outside window+1-window2
+			if (window.front() <= window1)
+				window.pop_front();
 		}
 		//Enlarge sliding window
 		else if (++window2 < length) {
 			suffixSourcesMap[calcParentString((*suffixArray)[window2])] += 1;
+			
+			//Do not need to track values larger then one being inserted
+			//Therefore remove all those values
+			while (!window.empty() && lcp[window.back()] >= lcp[window2])
+				window.pop_back();
+			window.push_back(window2);
 		}
-
-        //Sliding Window has changed so find its new minimum
-        if (window1 == window2) //trivial min value
-            currentMinIndex = window1;
-        else
-        {
-            currentMinIndex = window1 + 1;
-            for (auto i = window1 + 2; i <= window2; i++)
-					if (lcp[currentMinIndex] > lcp[window1])
-						currentMinIndex = window1;
-        }
 	}
 	
 	//Look at any missed lcp values
@@ -188,14 +182,15 @@ int SuffixArray::findLongestCommonStrand(const unsigned int k)
 	{
 		int suffix1 = (*suffixArray)[window1];
 		decrementIndex(suffixSourcesMap, calcParentString(suffix1-1));
-		currentMinIndex = window1 + 1;
-		for (auto i = window1 + 1; i < window2; i++)
-			if (lcp[currentMinIndex] > lcp[i])
-				currentMinIndex = i;
+		if (window.front() <= window1)
+				window.pop_front();
 		//Update our max value if needed
 		updateMaxValue(suffix1, suffix2);
 	}
-	printSubVector(*string, *offsets.begin(), max);
+
+	//Print out results
+	for (auto it = offsets.begin(); it != offsets.end(); it++)
+		printSubStringVector(*string, *it, max);
     
 	return max;
 }
@@ -235,6 +230,7 @@ int SuffixArray::calcParentString(int suffixOffset)
 	//Edge-case where offset is greater then the closest value
 	if (suffixOffset > (*suffixArray)[mid])
 		mid--;
+	//Found the parent string
 	return numStrings - mid;
 }
 
@@ -249,12 +245,12 @@ void SuffixArray::printVector(std::vector<T> v)
 }
 
 template <typename T>
-void SuffixArray::printSubVector(std::vector<T> v, int offset, int length) 
+void SuffixArray::printSubStringVector(std::vector<T> v, int offset, int length) 
 {
 	if (offset + length <= v.size()) {
 		for (auto i = offset; i < offset + length; i++)
 		{
-			std::cout << v.at(i) << ' ';
+			std::cout << (char)v.at(i) << ' ';
 		}
 		std::cout << std::endl;
 	}

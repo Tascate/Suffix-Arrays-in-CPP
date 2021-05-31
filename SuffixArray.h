@@ -4,6 +4,8 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <deque>
+
 class SuffixArray
 {
 public:
@@ -32,6 +34,6 @@ protected:
 	void printVector(std::vector<T> v);
 
 	template <typename T>
-	void printSubVector(std::vector<T> v, int offset, int length);
+	void printSubStringVector(std::vector<T> v, int offset, int length);
 };
 
