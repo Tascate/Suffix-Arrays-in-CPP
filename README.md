@@ -57,7 +57,7 @@ A simple algorithm to construct the LCP Array from a Suffix Array in linear time
 
 ### Longest Common String for k-Strings
 **O(n) time, O(n) work)**   
-Finding the LCS is based upon the premise that for a __sliding window__ from **i** to **j** on the LCP array. The **LCP value** for that sliding window is the minimum value from **i+1** to **j** provided that the first character for the suffix **i** and suffix **j** are the same. Also, we only have to update the current maximum value if the sliding window contains unique **k-strings**.   
+Finding the LCS is based upon the premise that for a __sliding window__ from **i** to **j** on the LCP array. The **LCP value** for that sliding window is the minimum value from **i+1** to **j** provided that the first character for the suffix **i** and suffix **j** are the same. Finding the minimum value in our sliding window takes amortized **O(1) time** using a deque. An algorithim for finding the minimum value of a sliding window can be found [here.](https://people.cs.uct.ac.za/~ksmith/articles/sliding_window_minimum.html)   
 We can then use bookkeeping to find the longest common substring.
 
 #### Finding out which string a suffix belongs to:
@@ -81,3 +81,4 @@ For coding simplicity, finding out the parent string for a given suffix takes **
 - [**Longest common substring problem suffix array part 1**](https://www.youtube.com/watch?v=Ic80xQFWevc)
 - [**Longest Common Substring problem suffix array part 2**](https://www.youtube.com/watch?v=DTLjHSToxmo)
 - [**Longest Repeated Substring**](https://www.youtube.com/watch?v=OptoHwC3D-Y)
+- [**Sliding Window Minimum Algorithm**](https://people.cs.uct.ac.za/~ksmith/articles/sliding_window_minimum.html)  
